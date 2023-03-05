@@ -19,4 +19,7 @@ gallery.innerHTML = galleryItems.map(({ preview, original, description }) => {
 let lightbox = new SimpleLightbox('.gallery a', {
     captionsData: 'alt',
     captionDelay: 250,
+    animationSpeed: 300,
+    closeText: "&#9785;&#65039;",
+    navText:["&#128072;","&#128073;"]
 });
