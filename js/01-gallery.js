@@ -30,18 +30,21 @@ function handleGalleryClick(event) {
     const bigImg = event.target.dataset.source;
     console.log(bigImg);
     
-    const instance = basicLightbox.create(`
-    <img src= ${bigImg} width="1280">`
+  const instance = basicLightbox.create(
+      `<img src= ${bigImg} width="1280">`,
+      {
+        onShow: (instance) => { document.addEventListener('keydown', handleCloseImage) },
+        onClose: (instance) => { document.removeEventListener('keydown', handleCloseImage) }
+      }
     )
 
     instance.show()
 
-    document.addEventListener('keydown', handleCloseImage);
+    
 
     function handleCloseImage(event) {
         if (event.code === "Escape") {
             instance.close();
-            document.removeEventListener('keydown', handleCloseImage);
         }
     }
 }
